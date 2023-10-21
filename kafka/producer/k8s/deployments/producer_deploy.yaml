@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+   name: producer-depl
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: producer-depl
+  template: 
+    metadata: 
+      labels: 
+        app: producer-depl  
+    spec: 
+      containers:
+        - name: producer
+          image: registry.gitlab.com/viviane.qian/projet-sdtd/producer
+          ports: 
+            - containerPort: 9092
+          envFrom:
+          - configMapRef:
+              name: producer-configmap
+      imagePullSecrets:
+        - name: registry-credentials
