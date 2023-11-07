@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-deployment
+  name: prometheus-depl
   namespace: default
   labels:
     app: prometheus-server
