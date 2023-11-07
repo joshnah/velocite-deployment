@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.31.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cassandra-load-keyspace
+  name: cassandra-load-keyspace
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: cassandra-load-keyspace
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.31.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/projet-sdtd-default: "true"
+        io.kompose.service: cassandra-load-keyspace
+    spec:
+      containers:
+        - args:
+            - /bin/bash
+            - -c
+            - ls /mnt/minikube
+            # - echo loading cassandra keyspace && cqlsh cassandra -f /db/cassandra_schema.cql
+          env:
+            - name: CASSANDRA_CLUSTER_NAME
+              value: SDTD Cluster
+          image: cassandra:5.0
+          name: cassandra-load-keyspace
+          resources: {}
+          volumeMounts:
+            - mountPath: /mnt/minikube
+              name: cassandra-load-keyspace-claim0
+      restartPolicy: Always
+      volumes:
+        - name: cassandra-load-keyspace-claim0
+          hostPath:
+            path: /db
+            type: File
