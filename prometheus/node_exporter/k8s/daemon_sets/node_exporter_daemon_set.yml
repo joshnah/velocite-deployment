@@ -48,8 +48,8 @@ spec:
           readOnly: true
       volumes:
       - hostPath:
-          path: /home/vivi/Documents/ENSIMAG_3A/SDTD/projet-sdtd-k8s/prometheus/node_exporter/k8s/daemon_sets/sys
+          path: /sys
         name: sys
       - hostPath:
-          path: /home/vivi/Documents/ENSIMAG_3A/SDTD/projet-sdtd-k8s/prometheus/node_exporter/k8s/daemon_sets/root
+          path: /root
         name: root
