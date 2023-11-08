@@ -38,3 +38,29 @@
 ```bash
     ./clear_ressources.sh
 ```
+
+## Kafka
+TODO
+
+## Prometheus
+TODO
+
+## Grafana
+- Dashboards :
+Versionnés sous /grafana/dashboards.
+
+Il faut générer une ConfigMap pour les dashboards :
+```
+kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards
+```
+
+Si elle existe déjà, il faut la supprimer puis la recréer :
+```
+kubectl delete configmap grafana-dashboards-files
+```
+
+- Déploiement de Grafana :
+Ensuite appliquer les fichiers Kubernetes :
+```
+kubectl apply -R -f grafana/k8s
+```
