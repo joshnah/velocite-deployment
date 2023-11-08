@@ -40,10 +40,25 @@
 ```
 
 ## Kafka
-TODO
+- Déploiement de la stack Kafka :
+```
+kubectl apply -R -f kafka
+```
+
 
 ## Prometheus
-TODO
+- Config du serveur Prometheus :
+```
+kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
+```
+
+- Déploiement des exporters et de Prometheus:
+```
+kubectl apply -R -f prometheus/kube_state_metrics
+kubectl apply -R -f prometheus/node_exporter
+kubectl apply -R -f prometheus/k8s
+```
+
 
 ## Grafana
 - Dashboards :
