@@ -18,12 +18,25 @@ spec:
         command:
         - "/bin/bash"
         - "-c"
-        - "echo loading cassandra keyspace && ls /data && cqlsh -f /data/cassandra_schema.cql"
+        - |
+          echo "Loading Cassandra keyspace..."
+          attempt=1
+          max_attempts=5 
+          while [[ $attempt -le $max_attempts ]]; do
+            if cqlsh $CASSANDRA_SERVICE_HOST $CASSANDRA_SERVICE_PORT -f /data/cassandra_schema.cql; then
+              echo "Cassandra keyspace loaded successfully."
+              break
+            else
+              echo "Attempt $attempt failed. Retrying..."
+              attempt=$((attempt + 1))
+              sleep 5  # Adjust the sleep duration between retries if needed
+            fi
+          done
         env:
         - name: CASSANDRA_CLUSTER_NAME
           value: "SDTD Cluster"
         - name: CASSANDRA_SERVICE_HOST
-          value: cassandra
+          value: cassandra-service
         - name: CASSANDRA_SERVICE_PORT
           value: "9042"
         volumeMounts:
