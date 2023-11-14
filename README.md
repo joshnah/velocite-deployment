@@ -28,6 +28,8 @@
 - producer
 - consumer
 - kowl
+- prometheus
+- grafana
 
 ```bash
     ./deploy.sh
@@ -37,45 +39,4 @@
 
 ```bash
     ./clear_ressources.sh
-```
-
-## Kafka
-- Déploiement de la stack Kafka :
-```
-kubectl apply -R -f kafka
-```
-
-
-## Prometheus
-- Config du serveur Prometheus :
-```
-kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
-```
-
-- Déploiement des exporters et de Prometheus:
-```
-kubectl apply -R -f prometheus/kube_state_metrics
-kubectl apply -R -f prometheus/node_exporter
-kubectl apply -R -f prometheus/k8s
-```
-
-
-## Grafana
-- Dashboards :
-Versionnés sous /grafana/dashboards.
-
-Il faut générer une ConfigMap pour les dashboards :
-```
-kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards
-```
-
-Si elle existe déjà, il faut la supprimer puis la recréer :
-```
-kubectl delete configmap grafana-dashboards-files
-```
-
-- Déploiement de Grafana :
-Ensuite appliquer les fichiers Kubernetes :
-```
-kubectl apply -R -f grafana/k8s
 ```
