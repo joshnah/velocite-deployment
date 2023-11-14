@@ -38,3 +38,13 @@ echo "-------------------- Deployment of Consumer -------------------- "
 
 kubectl apply -f kafka/consumer/k8s/configmaps/consumer_configmap.yaml
 kubectl apply -f kafka/consumer/k8s/deployments/consumer_deploy.yaml
+
+echo "-------------------- Deployment of Prometheus -------------------- "
+kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
+kubectl apply -R -f prometheus/kube_state_metrics
+kubectl apply -R -f prometheus/node_exporter
+kubectl apply -R -f prometheus/k8s
+
+echo "-------------------- Deployment of Grafana -------------------- "
+kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards
+kubectl apply -R -f grafana/k8s
