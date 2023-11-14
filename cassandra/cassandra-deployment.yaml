@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.31.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cassandra
+  name: cassandra
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: cassandra
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.31.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/projet-sdtd-default: "true"
+        io.kompose.service: cassandra
+    spec:
+      containers:
+        - env:
+            - name: CASSANDRA_CLUSTER_NAME
+              value: SDTD Cluster
+          image: cassandra:5.0
+          livenessProbe:
+            exec:
+              command:
+                - cqlsh
+                - -u cassandra
+                - -p cassandra
+                - -e describe keyspaces
+            failureThreshold: 10
+            periodSeconds: 15
+            timeoutSeconds: 10
+          name: cassandra
+          ports:
+            - containerPort: 9042
+              hostPort: 9042
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}
