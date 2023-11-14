@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "#################### Deployment of k8s resources #################### "
 
 echo "-------------------- Deleting ressources of namespace -------------------- "
@@ -17,7 +15,8 @@ kubectl apply -f kafka/k8s/pods/kafka_pod.yaml
 
 echo "-------------------- Deployment of Kowl -------------------- "
 
-kubectl apply -f kafka/k8s/kowl.yaml
+kubectl apply -f kafka/kowl/kowl.yaml
+kubectl apply -f kafka/kowl/kowl_service.yaml
 
 echo "-------------------- Deployment of Cassandra -------------------- "
 
@@ -34,5 +33,3 @@ echo "-------------------- Deployment of Consumer -------------------- "
 
 kubectl apply -f kafka/consumer/k8s/configmaps/consumer_configmap.yaml
 kubectl apply -f kafka/consumer/k8s/deployments/consumer_deploy.yaml
-
-
