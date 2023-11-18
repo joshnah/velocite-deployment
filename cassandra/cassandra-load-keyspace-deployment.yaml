@@ -9,7 +9,7 @@ spec:
       app: cassandra-load-keyspace
   template:
     metadata:
-      labels: 
+      labels:
         app: cassandra-load-keyspace
     spec:
       containers:
@@ -41,8 +41,4 @@ spec:
           value: "9042"
         volumeMounts:
         - mountPath: /data
-          name: volume
-      volumes:
-      - name: volume
-        hostPath:
-          path: /data
+          name: cassandra-pvc  # Use the name of your PersistentVolumeClaim
