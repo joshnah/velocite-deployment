@@ -12,6 +12,10 @@ spec:
       labels:
         app: cassandra-load-keyspace
     spec:
+      volumes:  # Définir les volumes au niveau du pod
+      - name: cassandra-pvc
+        persistentVolumeClaim:
+          claimName: nom_de_votre_PersistentVolumeClaim
       containers:
       - name: cassandra-load-keyspace
         image: cassandra:5.0
@@ -41,4 +45,4 @@ spec:
           value: "9042"
         volumeMounts:
         - mountPath: /data
-          name: cassandra-pvc  # Use the name of your PersistentVolumeClaim
+          name: cassandra-pvc  # Utilisez le même nom que celui défini dans "volumes"
