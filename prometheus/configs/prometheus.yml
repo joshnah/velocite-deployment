@@ -8,7 +8,7 @@ alerting:
   - scheme: http
     static_configs:
     - targets:
-      - "alertmanager.monitoring.svc:9093"
+      - "alertmanager.default.svc:9093"
 scrape_configs:
   - job_name: 'node-exporter'
     kubernetes_sd_configs:
