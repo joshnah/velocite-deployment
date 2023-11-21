@@ -18,8 +18,6 @@ data:
       email_configs:
       - to: velocite.sdtd@gmail.com
         send_resolved: true
-        from: velocite.sdtd@gmail.com
-        smarthost: smtp.gmail.com:587
         require_tls: false
     - name: discord
       discord_configs:
