@@ -5,6 +5,6 @@ groups:
       expr: sum(container_memory_usage_bytes) > 1
       for: 1m
       labels:
-          severity: slack
+          severity: warning
       annotations:
-          summary: High Memory Usage
+          summary: High Memory Usage test
