@@ -12,10 +12,22 @@ spec:
       labels:
         app: cassandra-load-keyspace
     spec:
-      volumes:  # Définir les volumes au niveau du pod
+      volumes:
       - name: cassandra-pvc
         persistentVolumeClaim:
-          claimName: nom_de_votre_PersistentVolumeClaim
+          claimName: cassandra-pvc
+      - name: cassandra-script-volume
+        configMap:
+          name: cassandra-script
+      initContainers:
+      - name: init-script
+        image: busybox
+        command: ['sh', '-c', 'cp /etc/cassandra_script/cassandra_schema.cql /data/']
+        volumeMounts:
+        - name: cassandra-script-volume
+          mountPath: /etc/cassandra_script
+        - name: cassandra-pvc
+          mountPath: /data
       containers:
       - name: cassandra-load-keyspace
         image: cassandra:5.0
@@ -33,7 +45,7 @@ spec:
             else
               echo "Attempt $attempt failed. Retrying..."
               attempt=$((attempt + 1))
-              sleep 5  # Adjust the sleep duration between retries if needed
+              sleep 5
             fi
           done
         env:
@@ -45,4 +57,4 @@ spec:
           value: "9042"
         volumeMounts:
         - mountPath: /data
-          name: cassandra-pvc  # Utilisez le même nom que celui défini dans "volumes"
+          name: cassandra-pvc

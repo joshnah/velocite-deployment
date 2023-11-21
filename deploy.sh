@@ -20,10 +20,12 @@ kubectl apply -f kafka/kowl/kowl_service.yaml
 
 echo "-------------------- Deployment of Cassandra -------------------- "
 
+kubectl apply -f cassandra/cassandra-configmap.yaml
 kubectl apply -f cassandra/cassandra-persistent-volume.yaml
 kubectl apply -f cassandra/cassandra-pvc.yaml
 kubectl apply -f cassandra/cassandra-load-keyspace-deployment.yaml
 kubectl apply -f cassandra/cassandra-service.yaml
+kubectl apply -f cassandra/cassandra-deployment.yaml
 
 
 
