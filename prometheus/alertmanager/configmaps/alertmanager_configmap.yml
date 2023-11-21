@@ -15,13 +15,14 @@ data:
  
     receivers:
     - name: alert-emailer
-      email_config:
+      email_configs:
       - to: velocite.sdtd@gmail.com
         send_resolved: true
         from: velocite.sdtd@gmail.com
         smarthost: smtp.gmail.com:587
         require_tls: false
-      discord_config:
+    - name: discord
+      discord_configs:
       - webhook_url: https://discord.com/api/webhooks/1176457042173632522/Glxsj9SYH_ajMD9WfmqaK6VKYSV7wWcsr9W7Rlv3N5U4WxSnx1aMRX5T3vC8IZzeQmzH
 
 
