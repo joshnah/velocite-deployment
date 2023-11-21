@@ -20,7 +20,7 @@ kubectl apply -f kafka/kowl/kowl_service.yaml
 
 echo "-------------------- Deployment of Cassandra -------------------- "
 
-kubectl apply -f cassandra/cassandra-configmap.yaml
+kubectl create configmap cassandra-script --from-file=cassandra/cassandra_schema.cql
 kubectl apply -f cassandra/cassandra-persistent-volume.yaml
 kubectl apply -f cassandra/cassandra-pvc.yaml
 kubectl apply -f cassandra/cassandra-load-keyspace-deployment.yaml

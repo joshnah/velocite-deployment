@@ -1,5 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS station WITH replication =
-  {'class': 'SimpleStrategy', 'replication_factor' : 1};
+CREATE KEYSPACE IF NOT EXISTS station WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
 
 CREATE TABLE IF NOT EXISTS station.stations (
   city text,
