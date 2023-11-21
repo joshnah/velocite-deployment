@@ -28,6 +28,8 @@
 - producer
 - consumer
 - kowl
+- prometheus
+- grafana
 
 ```bash
     ./deploy.sh
