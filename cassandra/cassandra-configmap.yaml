@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cassandra-script
-data:
-  cassandra_schema.cql: cassandra_schema.cql
