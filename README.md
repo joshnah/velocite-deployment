@@ -9,7 +9,7 @@
     ./cluster_config/gcp_enable_api.sh
 ```
 
-### Création du cluster
+### Création du cluster avec création d'un disque de 20go
 
 ```bash
     ./cluster_config/gcp_create_cluster.sh
