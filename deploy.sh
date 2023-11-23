@@ -20,9 +20,14 @@ kubectl apply -f kafka/kowl/kowl_service.yaml
 
 echo "-------------------- Deployment of Cassandra -------------------- "
 
-kubectl apply -f cassandra/cassandra-service.yaml
-kubectl apply -f cassandra/cassandra-deployment.yaml
-kubectl apply -f cassandra/cassandra-load-keyspace-deployment.yaml
+kubectl create configmap cassandra-script --from-file=cassandra/k8s/script/cassandra_schema.cql
+kubectl apply -f cassandra/k8s/volume/cassandra-persistent-volume.yaml
+kubectl apply -f cassandra/k8s/volume/cassandra-pvc.yaml
+kubectl apply -f cassandra/k8s/deployment/cassandra-load-keyspace-deployment.yaml
+kubectl apply -f cassandra/k8s/service/cassandra-service.yaml
+kubectl apply -f cassandra/k8s/deployment/cassandra-deployment.yaml
+
+
 
 echo "-------------------- Deployment of Producer -------------------- "
 
