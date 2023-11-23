@@ -8,7 +8,7 @@
 ```bash
     ./cluster_config/gcp_enable_api.sh
 ```
-### Création d'un disque de 20Gb (A faire une seule fois)
+### Création d'un disque de 20Gb (Automatiquement construit et détruit avec les scripts)
 ```bash
     gcloud compute disks create cassandra-disk --size=20GB --type=pd-ssd
 ```
