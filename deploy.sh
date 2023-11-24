@@ -44,6 +44,7 @@ kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
 kubectl apply -R -f prometheus/kube_state_metrics
 kubectl apply -R -f prometheus/node_exporter
 kubectl apply -R -f prometheus/k8s
+kubectl apply -R -f prometheus/alertmanager
 
 echo "-------------------- Deployment of Grafana -------------------- "
 kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards

@@ -31,7 +31,7 @@
 - producer
 - consumer
 - kowl
-- prometheus
+- prometheus (exporters & alert manager)
 - grafana
 
 ```bash
