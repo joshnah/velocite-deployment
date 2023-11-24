@@ -46,3 +46,6 @@ kubectl delete roles --all -n default
 
 # Supprime tous les rôles liés aux groupes dans l'espace de noms spécifié
 kubectl delete rolebinding --all -n default
+
+# Supprime tous les daemonsets dans l'espace de noms spécifié
+kubectl delete daemonset --all -n default
