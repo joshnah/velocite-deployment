@@ -16,24 +16,29 @@ fi
 
 echo "Initialisation de vault : création du pod vault-0"
 
-kubectl exec -it vault-0 -- vault operator init
+init_output=$(kubectl exec -it vault-0 -- vault operator init)
+unseal_key=$(echo "init_output" | grep "Unseal Key" | awk '{print $4}')
 
-echo "Injection des token d'authentification"
+for key in "$(unseal_key[@])";do
+  echo "$key"
+done
 
-# récupérer dynamiquement les jeton et appeler en boucle la commande autant de fois que le nombre de jeton
-kubectl exec -it vault-0 -- vault operator unseal
+# echo "Injection des tokens d'authentification"
 
-echo "Authentification"
+# # récupérer dynamiquement les jeton et appeler en boucle la commande autant de fois que le nombre de jeton
+# kubectl exec -it vault-0 -- vault operator unseal
 
-# récupérer le token d'auth et l'injecter en répnse à la commande
-kubectl exec -it vault-0 -- vault login
+# echo "Authentification"
 
-# spécification du chemin où stocker le secret
-kubectl exec -it vault-0 -- vault secrets enable -path=mon-chemin kv
+# # récupérer le token d'auth et l'injecter en répnse à la commande
+# kubectl exec -it vault-0 -- vault login
 
-# Ecriture de secrets
+# # spécification du chemin où stocker le secret
+# kubectl exec -it vault-0 -- vault secrets enable -path=mon-chemin kv
 
-kubectl exec -it vault-0 -- vault kv put mon-chemin/mon-secret key1=value1 key2=value2
+# # Ecriture de secrets
+
+# kubectl exec -it vault-0 -- vault kv put mon-chemin/mon-secret key1=value1 key2=value2
 
 
 
