@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-exporter
+spec:
+  containers:
+    - name: kafka-exporter
+      image: "danielqsj/kafka-exporter:latest"
+      imagePullPolicy: Always
+      args:
+        - --kafka.server=kafka-server:9092
+        # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
+      ports:
+        - name: kafka-exporter-port
+          containerPort: 9308
+          protocol: TCP

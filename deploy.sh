@@ -44,6 +44,7 @@ echo "-------------------- Deployment of Prometheus -------------------- "
 kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs --namespace=monitoring
 kubectl apply -R -f prometheus/kube_state_metrics
 kubectl apply -R -f prometheus/node_exporter
+kubectl apply -R -f prometheus/kafka_exporter
 kubectl apply -R -f prometheus/k8s
 kubectl apply -R -f prometheus/alertmanager
 
