@@ -3,14 +3,23 @@ kind: Deployment
 metadata:
   name: kafka-exporter
 spec:
-  containers:
-    - name: kafka-exporter
-      image: "danielqsj/kafka-exporter:latest"
-      imagePullPolicy: Always
-      args:
-        - --kafka.server=kafka-server:9092
-        # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
-      ports:
-        - name: kafka-exporter-port
-          containerPort: 9308
-          protocol: TCP
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-exporter
+  template:
+    metadata:
+      labels:
+        app: kafka-exporter
+    spec:
+      containers:
+        - name: kafka-exporter
+          image: "danielqsj/kafka-exporter:latest"
+          imagePullPolicy: Always
+          args:
+            - --kafka.server=kafka-server:9092
+            # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
+          ports:
+            - name: kafka-exp-port
+              containerPort: 9308
+              protocol: TCP
