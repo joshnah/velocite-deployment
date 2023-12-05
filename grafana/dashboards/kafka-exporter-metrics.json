@@ -20,7 +20,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 7589,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -68,8 +67,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 6,
+        "h": 9,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -122,9 +121,9 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
-        "w": 18,
-        "x": 6,
+        "h": 9,
+        "w": 20,
+        "x": 4,
         "y": 0
       },
       "hiddenSeries": false,
@@ -217,7 +216,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 16,
@@ -262,9 +261,28 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "$$hashKey": "object:49",
+          "colorMode": "warning",
+          "fill": true,
+          "line": true,
+          "op": "lt",
+          "value": 5,
+          "yaxis": "left"
+        },
+        {
+          "$$hashKey": "object:55",
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "lt",
+          "value": 1,
+          "yaxis": "left"
+        }
+      ],
       "timeRegions": [],
-      "title": "Message in per minute",
+      "title": "Messages produced per minute",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -278,11 +296,13 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:94",
           "format": "short",
           "logBase": 1,
           "show": true
         },
         {
+          "$$hashKey": "object:95",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -307,7 +327,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 18,
@@ -356,7 +376,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Message consume per minute",
+      "title": "Messages consumed per minute",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -399,7 +419,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 19
       },
       "hiddenSeries": false,
       "id": 12,
@@ -480,7 +500,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [
     "Kafka"
@@ -516,7 +536,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "kafka-exporter-service.default.svc.cluster.local:9308",
           "value": "kafka-exporter-service.default.svc.cluster.local:9308"
         },
@@ -605,6 +625,6 @@
   "timezone": "browser",
   "title": "Kafka Exporter Metrics",
   "uid": "jwPKIsniz",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
