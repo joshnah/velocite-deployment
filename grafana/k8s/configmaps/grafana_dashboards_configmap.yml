@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboards
-  namespace: default
+  namespace: monitoring
 data:
   dashboard.yaml: |-
     {
