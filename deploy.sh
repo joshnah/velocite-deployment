@@ -2,11 +2,21 @@ echo "#################### Deployment of k8s resources #################### "
 
 echo "-------------------- Deleting ressources of namespace -------------------- "
 
-kubectl delete --all --namespace=default pods,services,deployments,configmaps,secrets,ingress
+kubectl delete --all --namespace=messaging pods,services,deployments,configmaps,secrets,ingress
+kubectl delete --all --namespace=monitoring pods,services,deployments,configmaps,secrets,ingress
+kubectl delete --all --namespace=database pods,services,deployments,configmaps,secrets,ingress
+kubectl delete --all --namespace=web pods,services,deployments,configmaps,secrets,ingress
+
 kubectl delete all --all -n spark-operator
 kubectl delete namespace spark-operator
 kubectl delete sparkapplication --all -n default
 
+echo "-------------------- Creating ressources of namespaces -------------------- "
+
+kubectl create namespace monitoring
+kubectl create namespace messaging
+kubectl create namespace database
+kubectl create namespace web
 echo "-------------------- Deployment of secret -------------------- "
 
 kubectl apply -f secret.yaml
