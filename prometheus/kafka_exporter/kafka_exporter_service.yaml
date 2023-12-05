@@ -1,17 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-exporter
+  name: kafka-exporter-service
   labels:
     service: kafka-exporter-service
 spec:
   type: ClusterIP
   ports:
     - port: 9308
-      name: kafka-exporter-port
+      name: kafka-exp-port
       targetPort: 9308
-      protocol: TCP
   selector:
-    service: kafka-exporter
+    app: kafka-exporter
 status:
   loadBalancer: {}

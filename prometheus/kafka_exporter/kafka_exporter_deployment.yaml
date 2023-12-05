@@ -17,9 +17,8 @@ spec:
           image: "danielqsj/kafka-exporter:latest"
           imagePullPolicy: Always
           args:
-            - --kafka.server=kafka-server:9092
+            - --kafka.server=kafka-service.default.svc:9092
             # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
           ports:
             - name: kafka-exp-port
               containerPort: 9308
-              protocol: TCP
