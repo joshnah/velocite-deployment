@@ -49,3 +49,10 @@ kubectl delete rolebinding --all -n default
 
 # Supprime tous les daemonsets dans l'espace de noms spécifié
 kubectl delete daemonset --all -n default
+
+# Supprime tous sparkApplication
+kubectl delete sparkapplication --all -n default
+
+# Supprime tous dans un namespace spark-operator
+kubectl delete all --all -n spark-operator
+kubectl delete namespace spark-operator

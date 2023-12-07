@@ -43,25 +43,21 @@ spec:
     - api-result
     - cassandra-service
     - "9042"
-  #     pyFiles:
-  #       - "local:///data/deps.zip"
-  #       - "local:///data/helper.py"
   restartPolicy:
     type: OnFailure
-    onFailureRetries: 3
-    onFailureRetryInterval: 10
+    onFailureRetries: 5
+    onFailureRetryInterval: 20
     onSubmissionFailureRetries: 5
     onSubmissionFailureRetryInterval: 20
   driver:
-    cores: 1
-    coreLimit: "1200m"
+    coreRequest: "200m"
     memory: "512m"
     labels:
       version: 3.5.0
     serviceAccount: spark
 
   executor:
-    cores: 1
+    coreRequest: "200m"
     instances: 1
     memory: "512m"
     labels:
