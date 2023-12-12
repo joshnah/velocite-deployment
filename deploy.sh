@@ -44,7 +44,7 @@ kubectl apply -R -f kafka/consumer/k8s
 
 echo "-------------------- Deployment of Prometheus -------------------- "
 
-kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
+kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs --namespace=monitoring
 kubectl apply -R -f prometheus/kube_state_metrics
 kubectl apply -R -f prometheus/node_exporter
 kubectl apply -R -f prometheus/k8s
@@ -52,7 +52,7 @@ kubectl apply -R -f prometheus/alertmanager
 
 echo "-------------------- Deployment of Grafana -------------------- "
 
-kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards
+kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards --namespace=monitoring
 kubectl apply -R -f grafana/k8s
 
 echo "-------------------- Deployment of Spark -------------------- "
