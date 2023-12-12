@@ -3,6 +3,9 @@ echo "#################### Deployment of k8s resources #################### "
 echo "-------------------- Deleting ressources of namespace -------------------- "
 
 kubectl delete --all --namespace=default pods,services,deployments,configmaps,secrets,ingress
+kubectl delete all --all -n spark-operator
+kubectl delete namespace spark-operator
+kubectl delete sparkapplication --all -n default
 
 echo "-------------------- Deployment of secret -------------------- "
 
@@ -27,17 +30,10 @@ kubectl apply -f cassandra/k8s/deployment/cassandra-load-keyspace-deployment.yam
 kubectl apply -f cassandra/k8s/service/cassandra-service.yaml
 kubectl apply -f cassandra/k8s/deployment/cassandra-deployment.yaml
 
-
-
 echo "-------------------- Deployment of Producer -------------------- "
 
 kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml
 kubectl apply -f kafka/producer/k8s/deployments/producer_deploy.yaml
-
-echo "-------------------- Deployment of Consumer -------------------- "
-
-kubectl apply -f kafka/consumer/k8s/configmaps/consumer_configmap.yaml
-kubectl apply -f kafka/consumer/k8s/deployments/consumer_deploy.yaml
 
 echo "-------------------- Deployment of Prometheus -------------------- "
 kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs
@@ -49,3 +45,11 @@ kubectl apply -R -f prometheus/alertmanager
 echo "-------------------- Deployment of Grafana -------------------- "
 kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards
 kubectl apply -R -f grafana/k8s
+
+echo "-------------------- Deployment of Spark -------------------- "
+
+helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
+
+helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=default --set serviceAccounts.spark.name=spark --set enableWebhook=true --create-namespace
+
+kubectl apply -f spark/streaming.yaml
