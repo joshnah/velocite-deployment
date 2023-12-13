@@ -7,16 +7,13 @@ kubectl delete --all --namespace=monitoring pods,services,deployments,configmaps
 kubectl delete --all --namespace=database pods,services,deployments,configmaps,secrets,ingress
 kubectl delete --all --namespace=web pods,services,deployments,configmaps,secrets,ingress
 
-kubectl delete all --all -n spark-operator
-kubectl delete namespace spark-operator
-kubectl delete sparkapplication --all -n default
-
 echo "-------------------- Creating ressources of namespaces -------------------- "
 
 kubectl create namespace monitoring
 kubectl create namespace messaging
 kubectl create namespace database
 kubectl create namespace web
+kubectl create namespace spark-operator
 echo "-------------------- Deployment of secret -------------------- "
 
 kubectl apply -f secret.yaml
@@ -59,6 +56,6 @@ echo "-------------------- Deployment of Spark -------------------- "
 
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
 
-helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=default --set serviceAccounts.spark.name=spark --set enableWebhook=true --create-namespace
+helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true
 
 kubectl apply -f spark/streaming.yaml
