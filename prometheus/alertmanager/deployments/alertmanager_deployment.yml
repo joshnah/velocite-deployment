@@ -24,12 +24,9 @@ spec:
         - name: alertmanager
           containerPort: 9093
         resources:
-            requests:
+            limits:
               cpu: 150m
               memory: 250M
-            limits:
-              cpu: 1
-              memory: 1Gi
         volumeMounts:
         - name: config-volume
           mountPath: /etc/alertmanager
