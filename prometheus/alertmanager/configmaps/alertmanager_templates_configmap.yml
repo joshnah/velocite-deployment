@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: alertmanager-templates
+  namespace: monitoring
 data:
   default.tmpl: |
     {{ define "__alertmanager" }}AlertManager{{ end }}

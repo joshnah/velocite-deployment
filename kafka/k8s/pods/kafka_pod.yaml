@@ -9,7 +9,7 @@ metadata:
     io.kompose.network/projet-sdtd-default: "true"
     io.kompose.service: kafka
   name: kafka
-  namespace: default
+  namespace: messaging
 spec:
   containers:
     - env:

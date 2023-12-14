@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: cassandra-pv
+  namespace: database
 spec:
   capacity:
     storage: 500Mi

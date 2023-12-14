@@ -8,7 +8,7 @@ metadata:
   labels:
     io.kompose.service: cassandra
   name: cassandra
-  namespace: default
+  namespace: database
 spec:
   replicas: 1
   selector:
