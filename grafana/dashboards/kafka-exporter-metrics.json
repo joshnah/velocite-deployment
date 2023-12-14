@@ -537,8 +537,8 @@
       {
         "current": {
           "selected": false,
-          "text": "kafka-exporter-service.default.svc.cluster.local:9308",
-          "value": "kafka-exporter-service.default.svc.cluster.local:9308"
+          "text": "kafka-exporter-service.monitoring.svc.cluster.local:9308",
+          "value": "kafka-exporter-service.monitoring.svc.cluster.local:9308"
         },
         "datasource": {
           "type": "prometheus",
