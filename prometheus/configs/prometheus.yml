@@ -117,4 +117,4 @@ scrape_configs:
       target_label: kubernetes_name
   - job_name: 'kafka-exporter'
     static_configs:
-      - targets: ['kafka-exporter-service.monitoring.svc.cluster.local:9308']
+      - targets: ['kafka-exporter-service.messaging.svc.cluster.local:9308']
