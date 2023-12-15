@@ -1,18 +1,16 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: cassandra-load-keyspace
   namespace: database
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: cassandra-load-keyspace
+  ttlSecondsAfterFinished: 15
   template:
     metadata:
       labels:
         app: cassandra-load-keyspace
     spec:
+      restartPolicy: OnFailure
       volumes:
       - name: cassandra-pvc
         persistentVolumeClaim:
