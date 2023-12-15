@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-exporter
+  namespace: messaging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-exporter
+  template:
+    metadata:
+      labels:
+        app: kafka-exporter
+    spec:
+      containers:
+        - name: kafka-exporter
+          image: "danielqsj/kafka-exporter:latest"
+          imagePullPolicy: Always
+          args:
+            - --kafka.server=kafka-service:9092
+            # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
+          ports:
+            - name: kafka-exp-port
+              containerPort: 9308

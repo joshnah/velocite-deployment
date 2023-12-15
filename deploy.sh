@@ -1,11 +1,10 @@
+#!/bin/bash
+
 echo "#################### Deployment of k8s resources #################### "
 
 echo "-------------------- Deleting ressources of namespace -------------------- "
 
-kubectl delete --all --namespace=messaging pods,services,deployments,configmaps,secrets,ingress
-kubectl delete --all --namespace=monitoring pods,services,deployments,configmaps,secrets,ingress
-kubectl delete --all --namespace=database pods,services,deployments,configmaps,secrets,ingress
-kubectl delete --all --namespace=web pods,services,deployments,configmaps,secrets,ingress
+sh clear_ressources.sh
 
 echo "-------------------- Creating ressources of namespaces -------------------- "
 
@@ -14,6 +13,7 @@ kubectl create namespace messaging
 kubectl create namespace database
 kubectl create namespace web
 kubectl create namespace spark-operator
+
 echo "-------------------- Deployment of secret -------------------- "
 
 kubectl apply -f secret.yaml
@@ -44,6 +44,7 @@ echo "-------------------- Deployment of Prometheus -------------------- "
 kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs --namespace=monitoring
 kubectl apply -R -f prometheus/kube_state_metrics
 kubectl apply -R -f prometheus/node_exporter
+kubectl apply -R -f prometheus/kafka_exporter
 kubectl apply -R -f prometheus/k8s
 kubectl apply -R -f prometheus/alertmanager
 

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-exporter-service
+  namespace: messaging
+  labels:
+    service: kafka-exporter-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9308
+      name: kafka-exp-port
+      targetPort: 9308
+  selector:
+    app: kafka-exporter
+status:
+  loadBalancer: {}
