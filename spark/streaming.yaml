@@ -26,7 +26,7 @@ spec:
   pythonVersion: "3"
   mode: cluster
   image: registry.gitlab.com/viviane.qian/projet-sdtd/streaming
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   imagePullSecrets:
     - registry-credentials
   mainApplicationFile: local:///app/streaming.py

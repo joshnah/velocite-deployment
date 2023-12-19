@@ -37,7 +37,7 @@ kubectl apply -R -f kafka/producer/k8s
 
 echo "-------------------- Deployment of Consumer -------------------- "
 
-kubectl apply -R -f kafka/consumer/k8s
+# kubectl apply -R -f kafka/consumer/k8s
 
 echo "-------------------- Deployment of Prometheus -------------------- "
 
