@@ -57,6 +57,6 @@ echo "-------------------- Deployment of Spark -------------------- "
 
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
 
-helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true set enableMetrics=true
+helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true
 
 kubectl apply -f spark/streaming.yaml
