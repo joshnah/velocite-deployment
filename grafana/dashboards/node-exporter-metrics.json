@@ -26,6 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 1860,
   "graphTooltip": 1,
+  "id": 3,
   "links": [
     {
       "icon": "external link",
@@ -119,7 +120,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 0,
         "y": 1
@@ -138,9 +139,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -209,7 +211,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 3,
         "y": 1
@@ -228,9 +230,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -299,7 +302,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 6,
         "y": 1
@@ -318,9 +321,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -378,7 +382,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 9,
         "y": 1
@@ -398,9 +402,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -485,7 +490,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 12,
         "y": 1
@@ -504,9 +509,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -567,7 +573,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 5,
         "x": 15,
         "y": 1
@@ -587,9 +593,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -647,7 +654,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 20,
         "y": 1
@@ -668,9 +675,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -738,7 +746,7 @@
         "h": 2,
         "w": 5,
         "x": 15,
-        "y": 3
+        "y": 4
       },
       "id": 23,
       "links": [],
@@ -755,9 +763,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -823,7 +832,7 @@
         "h": 2,
         "w": 4,
         "x": 20,
-        "y": 3
+        "y": 4
       },
       "id": 75,
       "links": [],
@@ -840,9 +849,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.2.0",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
@@ -872,7 +882,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 265,
       "panels": [],
@@ -1076,7 +1086,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 7
       },
       "id": 3,
       "links": [],
@@ -1586,7 +1596,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 6
+        "y": 7
       },
       "id": 24,
       "links": [],
@@ -1797,7 +1807,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "id": 43,
       "links": [],
@@ -1931,7 +1941,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 19
       },
       "id": 156,
       "links": [],
@@ -2364,7 +2374,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 31
       },
       "id": 229,
       "links": [],
@@ -2594,7 +2604,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 31
       },
       "id": 42,
       "links": [],
@@ -2742,7 +2752,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 42
+        "y": 43
       },
       "id": 127,
       "links": [],
@@ -2923,7 +2933,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 42
+        "y": 43
       },
       "id": 84,
       "links": [],
@@ -2977,7 +2987,7 @@
   ],
   "refresh": "",
   "revision": 1,
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [
     "linux"
   ],
@@ -3003,15 +3013,15 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "kubernetes-service-endpoints",
-          "value": "kubernetes-service-endpoints"
+          "selected": true,
+          "text": "node-exporter",
+          "value": "node-exporter"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "",
+        "definition": "label_values(node_uname_info{job=\"node-exporter\"},job)",
         "hide": 0,
         "includeAll": false,
         "label": "Job",
@@ -3019,8 +3029,9 @@
         "name": "job",
         "options": [],
         "query": {
-          "query": "label_values(node_uname_info, job)",
-          "refId": "Prometheus-job-Variable-Query"
+          "qryType": 1,
+          "query": "label_values(node_uname_info{job=\"node-exporter\"},job)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -3033,9 +3044,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "10.16.0.14:9100",
-          "value": "10.16.0.14:9100"
+          "selected": true,
+          "text": "10.16.0.6:9100",
+          "value": "10.16.0.6:9100"
         },
         "datasource": {
           "type": "prometheus",
