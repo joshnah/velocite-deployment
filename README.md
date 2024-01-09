@@ -31,11 +31,11 @@ gcloud config set project [PROJECT_ID]
 
 - cassandra
 - kafka
-- producer
-- consumer
 - kowl
 - prometheus (exporters & alert manager)
 - grafana
+- airflow
+- spark
 
 ```bash
     ./deploy.sh
@@ -46,3 +46,12 @@ gcloud config set project [PROJECT_ID]
 ```bash
     ./clear_ressources.sh
 ```
+
+## Data pipeline
+Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder).
+
+
+## A FAIRE
+- Remote log GCP pour airflow
+- schedule dag automatiquement lors du déploiement
+- Clean up sparkOperatorPods (Ils sont pas nettoyés après la fin de l'exécution)

@@ -1,4 +1,5 @@
-CREATE KEYSPACE IF NOT EXISTS station WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+CREATE KEYSPACE IF NOT EXISTS station WITH replication =
+  {'class': 'SimpleStrategy', 'replication_factor' : 1};
 
 CREATE TABLE IF NOT EXISTS station.stations (
   city text,
@@ -6,7 +7,19 @@ CREATE TABLE IF NOT EXISTS station.stations (
   bikes smallint,
   capacity smallint,
   updated_at timestamp,
-    PRIMARY KEY ((city), station_id, updated_at) );
+    PRIMARY KEY ((city, station_id), updated_at))
+  WITH CLUSTERING ORDER BY (updated_at DESC);
+
+
+CREATE TABLE IF NOT EXISTS station.daily (
+  city text,
+  station_id text,
+  updated_at timestamp,
+  avg_bikes float,
+  avg_occupancy_rate float,
+  PRIMARY KEY ((city, station_id), updated_at))
+  WITH CLUSTERING ORDER BY (updated_at DESC);
+
 
 -- CREATE TYPE station.address (
 --   street text,
