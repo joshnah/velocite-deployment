@@ -2356,7 +2356,7 @@ dags:
     # ssh example: git@github.com:apache/airflow.git
     # https example: https://github.com/apache/airflow.git
     repo: git@gitlab.com:viviane.qian/projet-sdtd.git
-    branch: dags
+    branch: main
     rev: HEAD
     depth: 1
     # the number of consecutive failures allowed before aborting
