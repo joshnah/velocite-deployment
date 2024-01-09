@@ -1,10 +1,85 @@
 groups:
-  - name: prometheus alerts
+  - name: kafka alerts
     rules:
-    - alert: High Pod Memory
-      expr: sum(container_memory_usage_bytes) > 1
+    - alert: Low Rate Messages Produced
+      expr: sum(delta(kafka_topic_partition_current_offset{topic=~"api-result"}[5m])/5) by (topic) < 5
       for: 1m
       labels:
           severity: warning
       annotations:
-          summary: High Memory Usage test
+          summary: Low rate of messages produced
+    - alert: Low Rate Messages Consumed
+      expr: kafka_topic_partition_current_offset{partition=~'0', instance=~'$instance', topic=~"$topic"} - on() kafka_consumergroup_current_offset{instance=~'$instance',topic=~"$topic"}
+      for: 1m
+      labels:
+          severity: warning
+      annotations:
+          summary: Low rate of messages consumed
+  - name: kubernetes alerts
+    rules:
+    - alert: High Pod Requested
+      expr: sum(kube_pod_info) / sum(kube_node_status_allocatable{resource="pods"}) * 100 > 90
+      for: 2m
+      labels:
+          severity: critical
+      annotations:
+          summary: More than 90% number of pods available has been requested
+    - alert: High Pod CPU Requested
+      expr: sum(kube_pod_container_resource_requests{resource="cpu"})/ sum(kube_node_status_allocatable{resource="cpu"}) * 100 > 90
+      for: 2m
+      labels:
+          severity: critical
+      annotations:
+          summary: More than 90% CPU available has been requested from the pods
+    - alert: High Pod Memory
+      expr: sum(kube_pod_container_resource_requests{resource="memory"}) / sum(kube_node_status_allocatable{resource="memory"}) * 100 > 90
+      for: 2m
+      labels:
+          severity: critical
+      annotations:
+          summary: More than 90% of memory available has been requested from the pods
+    - alert: Node Unavailable
+      expr: sum(kube_node_spec_unschedulable) > 0
+      for: 2m
+      labels:
+          severity: warning
+      annotations:
+          summary: Some nodes are currently unavailable
+    - alert: PVC Not Bound
+      expr: sum(kube_persistentvolumeclaim_status_phase{phase="Bound"}) < 1
+      for: 2m
+      labels:
+          severity: critical
+      annotations:
+          summary: The persistent volume claim is not bound
+  - name: node alerts
+    rules:
+    - alert: Node CPU Busy
+      expr: (sum by(instance) (irate(node_cpu_seconds_total{mode!="idle"}[2m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total[2m])))) * 100 > 85
+      for: 2m
+      labels:
+          severity: warning
+      annotations:
+          summary: More than 85% of a node's CPU available amount has been used
+    - alert: High Average Sys Load on Node
+      expr: avg_over_time(node_load5{job="node-exporter"}[2m]) * 100 /  on(instance) group_left sum by (instance)(irate(node_cpu_seconds_total{job="node-exporter"}[2m])) > 85
+      for: 2m
+      labels:
+          severity: warning
+      annotations:
+          summary: The average system loading use more than 85% of a node's CPU available amount
+    - alert: High Node RAM used
+      expr: 100 - ((avg_over_time(node_memory_MemAvailable_bytes{job="node-exporter"}[2m]) * 100) / avg_over_time(node_memory_MemTotal_bytes{job="node-exporter"}[2m])) > 80
+      for: 2m
+      labels:
+          severity: warning
+      annotations:
+          summary: More than 80% of a node's RAM is used
+    - alert: High Root FS used
+      expr: 100 - ((avg_over_time(node_filesystem_avail_bytes{job="node-exporter",mountpoint="/",fstype!="rootfs"}[1m]) * 100) / avg_over_time(node_filesystem_size_bytes{job="node-exporter",mountpoint="/",fstype!="rootfs"}[1m])) > 80
+      for: 2m
+      labels:
+          severity: warning
+      annotations:
+          summary: Less than 20% of a node's disk space remains.
+          
