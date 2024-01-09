@@ -45,6 +45,5 @@ spec:
             - containerPort: 9042
               hostPort: 9042
               protocol: TCP
-          resources: {}
       restartPolicy: Always
 status: {}

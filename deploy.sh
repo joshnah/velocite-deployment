@@ -33,7 +33,9 @@ kubectl apply -R -f cassandra/k8s/
 
 echo "-------------------- Deployment of Producer -------------------- "
 
-kubectl apply -R -f kafka/producer/k8s
+# kubectl apply -R -f kafka/producer/k8s
+kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
+
 
 echo "-------------------- Deployment of Consumer -------------------- "
 
@@ -48,7 +50,7 @@ kubectl apply -R -f prometheus/kafka_exporter
 kubectl apply -R -f prometheus/k8s
 kubectl apply -R -f prometheus/alertmanager
 
-echo "-------------------- Deployment of Grafana -------------------- "
+# echo "-------------------- Deployment of Grafana -------------------- "
 
 kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards --namespace=monitoring
 kubectl apply -R -f grafana/k8s
@@ -59,4 +61,8 @@ helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-
 
 helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true
 
-kubectl apply -f spark/streaming.yaml
+helm repo add apache-airflow https://airflow.apache.org
+
+helm upgrade --install airflow apache-airflow/airflow --namespace airflow  --values airflow/values.yaml --create-namespace  
+
+kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=airflow:airflow-worker --namespace messaging
