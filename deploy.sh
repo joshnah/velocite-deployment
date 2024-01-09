@@ -13,6 +13,7 @@ kubectl create namespace messaging
 kubectl create namespace database
 kubectl create namespace web
 kubectl create namespace spark-operator
+kubectl create namespace chaos-mesh
 
 echo "-------------------- Deployment of secret -------------------- "
 
@@ -50,7 +51,7 @@ kubectl apply -R -f prometheus/kafka_exporter
 kubectl apply -R -f prometheus/k8s
 kubectl apply -R -f prometheus/alertmanager
 
-# echo "-------------------- Deployment of Grafana -------------------- "
+echo "-------------------- Deployment of Grafana -------------------- "
 
 kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards --namespace=monitoring
 kubectl apply -R -f grafana/k8s
@@ -61,8 +62,15 @@ helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-
 
 helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true
 
+echo "-------------------- Deployment of Airflow -------------------- "
+
 helm repo add apache-airflow https://airflow.apache.org
 
 helm upgrade --install airflow apache-airflow/airflow --namespace airflow  --values airflow/values.yaml --create-namespace  
 
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=airflow:airflow-worker --namespace messaging
+
+echo "-------------------- Deployment of Chaos Mesh -------------------- "
+
+helm repo add chaos-mesh https://charts.chaos-mesh.org
+helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.6.2
