@@ -13,7 +13,6 @@ kubectl create namespace messaging
 kubectl create namespace database
 kubectl create namespace web
 kubectl create namespace spark-operator
-kubectl create namespace chaos-mesh
 
 echo "-------------------- Deployment of secret -------------------- "
 
@@ -38,7 +37,7 @@ echo "-------------------- Deployment of Producer -------------------- "
 kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
 
 
-echo "-------------------- Deployment of Consumer -------------------- "
+# echo "-------------------- Deployment of Consumer -------------------- "
 
 # kubectl apply -R -f kafka/consumer/k8s
 
@@ -69,8 +68,3 @@ helm repo add apache-airflow https://airflow.apache.org
 helm upgrade --install airflow apache-airflow/airflow --namespace airflow  --values airflow/values.yaml --create-namespace  
 
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=airflow:airflow-worker --namespace messaging
-
-echo "-------------------- Deployment of Chaos Mesh -------------------- "
-
-helm repo add chaos-mesh https://charts.chaos-mesh.org
-helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --version 2.6.2

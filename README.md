@@ -51,6 +51,22 @@ gcloud config set project [PROJECT_ID]
 Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder).
 
 
+## Simulation de fautes - Chaos Mesh
+Chaos Mesh permet de simuler sur des fautes sur le cluster. Pour l'utiliser, il faut le déployer sur le cluster.
+```bash
+./chaos_mesh/deploy_chaos_mesh.sh
+```
+
+Pour accéder à l'interface web permettant d'injecter des fautes, il faut exposer le service.
+```bash
+kubectl expose deployment chaos-dashboard --type=LoadBalancer -n chaos-mesh --name=chaos-dashboard-loadbalancer
+```
+
+Pour supprimer Chaos Mesh du cluster, il faut exécuter le script suivant :
+```bash
+./chaos_mesh/clear_chaos_mesh.sh
+```
+
 ## A FAIRE
 - Remote log GCP pour airflow
 - schedule dag automatiquement lors du déploiement

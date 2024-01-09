@@ -7,5 +7,4 @@ kubectl delete all --all --namespace=database
 kubectl delete all --all --namespace=web
 kubectl delete all --all --namespace=spark-operator
 kubectl delete all --all --namespace=airflow
-kubectl delete all --all --namespace=chaos-mesh
-kubectl delete namespace messaging monitoring database web spark-operator airflow chaos-mesh
+kubectl delete namespace messaging monitoring database web spark-operator airflow
