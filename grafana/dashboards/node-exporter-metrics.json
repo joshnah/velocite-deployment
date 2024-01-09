@@ -2985,7 +2985,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "revision": 1,
   "schemaVersion": 39,
   "tags": [
@@ -3013,7 +3013,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "node-exporter",
           "value": "node-exporter"
         },
@@ -3044,9 +3044,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "10.16.0.6:9100",
-          "value": "10.16.0.6:9100"
+          "selected": false,
+          "text": "10.16.0.33:9100",
+          "value": "10.16.0.33:9100"
         },
         "datasource": {
           "type": "prometheus",
@@ -3096,7 +3096,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
