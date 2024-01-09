@@ -15,6 +15,15 @@ groups:
           severity: warning
       annotations:
           summary: Low rate of messages consumed
+  - name: spark alerts
+    rules:
+    - alert: High percentage of failed task per minute
+      expr: (increase(metrics_executor_failedTasks_total{executor_id="$executor_id"}[1m])) / (increase(metrics_executor_totalTasks_total{executor_id="$executor_id"}[1m]))
+      for: 1m
+      labels:
+          severity: warning
+      annotations:
+          summary: High percentage of failed task per minute
   - name: kubernetes alerts
     rules:
     - alert: High Pod Requested
@@ -82,4 +91,4 @@ groups:
           severity: warning
       annotations:
           summary: Less than 20% of a node's disk space remains.
-          
+ 

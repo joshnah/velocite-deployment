@@ -33,6 +33,7 @@ spec:
   sparkVersion: "3.5.0"
   sparkConf:
     spark.driver.extraJavaOptions: "-Divy.cache.dir=/tmp -Divy.home=/tmp -Dbasicauth=username:password"
+    spark.ui.prometheus.enabled: "true"
   deps:
     packages:
         - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0
@@ -55,13 +56,15 @@ spec:
     labels:
       version: 3.5.0
     serviceAccount: spark
-
   executor:
     coreRequest: "200m"
     instances: 1
     memory: "512m"
     labels:
       version: 3.5.0
+  monitoring:
+    exposeDriverMetrics: true
+    exposeExecutorMetrics: true
     
     
   
