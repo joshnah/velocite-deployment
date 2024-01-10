@@ -58,3 +58,9 @@ helm repo add apache-airflow https://airflow.apache.org
 helm upgrade --install airflow apache-airflow/airflow --namespace airflow  --values airflow/values.yaml --create-namespace  
 
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=airflow:airflow-worker --namespace messaging
+
+echo "-------------------- Deployment of Loki -------------------- "
+
+helm repo add grafana https://grafana.github.io/helm-charts
+
+helm install --values grafana/loki/values.yml loki --namespace monitoring grafana/loki
