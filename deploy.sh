@@ -37,7 +37,7 @@ echo "-------------------- Deployment of Producer -------------------- "
 kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
 
 
-echo "-------------------- Deployment of Consumer -------------------- "
+# echo "-------------------- Deployment of Consumer -------------------- "
 
 # kubectl apply -R -f kafka/consumer/k8s
 
@@ -50,7 +50,7 @@ kubectl apply -R -f prometheus/kafka_exporter
 kubectl apply -R -f prometheus/k8s
 kubectl apply -R -f prometheus/alertmanager
 
-# echo "-------------------- Deployment of Grafana -------------------- "
+echo "-------------------- Deployment of Grafana -------------------- "
 
 kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards --namespace=monitoring
 kubectl apply -R -f grafana/k8s
@@ -60,6 +60,8 @@ echo "-------------------- Deployment of Spark -------------------- "
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
 
 helm install my-release spark-operator/spark-operator --namespace spark-operator --set sparkJobNamespace=messaging --set serviceAccounts.spark.name=spark --set enableWebhook=true
+
+echo "-------------------- Deployment of Airflow -------------------- "
 
 helm repo add apache-airflow https://airflow.apache.org
 
