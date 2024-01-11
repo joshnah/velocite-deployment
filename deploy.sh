@@ -22,7 +22,7 @@ echo "-------------------- Deployment of Kafka -------------------- "
 
 kubectl apply -R -f kafka/k8s
 
-echo "-------------------- Deployment of Kowl -------------------- "
+# echo "-------------------- Deployment of Kowl -------------------- "
 
 # kubectl apply -R -f kafka/kowl
 
@@ -31,10 +31,10 @@ echo "-------------------- Deployment of Cassandra -------------------- "
 kubectl create configmap cassandra-script --from-file=cassandra/k8s/script/cassandra_schema.cql --namespace=database
 kubectl apply -R -f cassandra/k8s/
 
-echo "-------------------- Deployment of Producer -------------------- "
+# echo "-------------------- Deployment of Producer -------------------- "
 
 # kubectl apply -R -f kafka/producer/k8s
-kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
+# kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
 
 
 # echo "-------------------- Deployment of Consumer -------------------- "
