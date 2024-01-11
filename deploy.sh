@@ -32,6 +32,7 @@ echo "-------------------- Deployment of Cassandra -------------------- "
 kubectl create configmap cassandra-script --from-file=cassandra/k8s/script/cassandra_schema.cql --namespace=database
 kubectl apply -R -f cassandra/k8s/
 
+
 echo "-------------------- Deployment of Prometheus -------------------- "
 
 kubectl create configmap prometheus-server-conf --from-file=./prometheus/configs --namespace=monitoring
@@ -56,7 +57,7 @@ echo "-------------------- Deployment of Airflow -------------------- "
 
 helm repo add apache-airflow https://airflow.apache.org
 
-helm upgrade --install airflow apache-airflow/airflow --namespace airflow  --values airflow/values.yaml --create-namespace  
+helm upgrade --install airflow apache-airflow/airflow --namespace airflow --values airflow/values.yaml --create-namespace
 
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=airflow:airflow-worker --namespace messaging
 
@@ -64,4 +65,4 @@ echo "-------------------- Deployment of Loki -------------------- "
 
 helm repo add grafana https://grafana.github.io/helm-charts
 
-helm install --values _grafana/loki/values.yml loki --namespace loki grafana/loki
+helm upgrade --install loki loki/loki-stack --namespace loki --values _grafana/loki/values.yml
