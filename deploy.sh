@@ -26,7 +26,7 @@ kubectl apply -f kafka/kafka-persistent.yaml -n messaging
 
 echo "-------------------- Deployment of Kowl -------------------- "
 
-kubectl apply -R -f kafka/kowl
+# kubectl apply -R -f kafka/kowl
 
 echo "-------------------- Deployment of Cassandra -------------------- "
 
