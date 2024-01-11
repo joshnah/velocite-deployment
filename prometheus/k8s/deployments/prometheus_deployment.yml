@@ -34,11 +34,8 @@ spec:
               mountPath: /prometheus/
       initContainers:
         - name: prometheus-init
-          image: prom/prometheus
-          command:
-            - "/bin/sh"
-            - "-c"
-            - "chown -R 777 /prometheus"
+          image: busybox
+          command: ["/bin/chmod","-R","777", "/prometheus"]
           volumeMounts:
             - name: prometheus-storage-volume
               mountPath: /prometheus/
