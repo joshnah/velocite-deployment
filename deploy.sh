@@ -20,7 +20,7 @@ kubectl apply -f secret.yaml
 
 echo "-------------------- Deployment of Kafka -------------------- "
 
-kubectl apply -R -f kafka/k8s
+kubectl apply -f kafka.yaml -n messaging  
 
 echo "-------------------- Deployment of Kowl -------------------- "
 
