@@ -20,7 +20,8 @@ kubectl apply -f secret.yaml
 
 echo "-------------------- Deployment of Kafka -------------------- "
 
-kubectl apply -f kafka.yaml -n messaging  
+kubectl apply -f kafka/kafka.yaml
+kubectl apply -f kafka/producer_configmap.yaml
 
 # echo "-------------------- Deployment of Kowl -------------------- "
 
@@ -30,16 +31,6 @@ echo "-------------------- Deployment of Cassandra -------------------- "
 
 kubectl create configmap cassandra-script --from-file=cassandra/k8s/script/cassandra_schema.cql --namespace=database
 kubectl apply -R -f cassandra/k8s/
-
-# echo "-------------------- Deployment of Producer -------------------- "
-
-# kubectl apply -R -f kafka/producer/k8s
-# kubectl apply -f kafka/producer/k8s/configmaps/producer_configmap.yaml 
-
-
-# echo "-------------------- Deployment of Consumer -------------------- "
-
-# kubectl apply -R -f kafka/consumer/k8s
 
 echo "-------------------- Deployment of Prometheus -------------------- "
 
