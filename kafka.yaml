@@ -45,7 +45,7 @@ spec:
             - name: SERVICE
               value: kafka-service
             - name: NAMESPACE
-              value: default
+              value: messaging
             - name: SHARE_DIR
               value: /mnt/kafka
             - name: CLUSTER_ID
@@ -65,4 +65,4 @@ spec:
           - "ReadWriteOnce"
         resources:
           requests:
-            storage: "2Gi"
+            storage: "1Gi"
