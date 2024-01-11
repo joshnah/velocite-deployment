@@ -20,7 +20,9 @@ kubectl apply -f secret.yaml
 
 echo "-------------------- Deployment of Kafka -------------------- "
 
-kubectl apply -R -f kafka/k8s
+kubectl create -f 'https://strimzi.io/install/latest?namespace=messaging' -n messaging 
+
+kubectl apply -f kafka/kafka-persistent.yaml -n messaging
 
 echo "-------------------- Deployment of Kowl -------------------- "
 
