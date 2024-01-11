@@ -12,6 +12,7 @@ kubectl create namespace monitoring
 kubectl create namespace messaging
 kubectl create namespace database
 kubectl create namespace spark-operator
+kubectl create namespace loki
 
 echo "-------------------- Deployment of secret -------------------- "
 
@@ -42,8 +43,8 @@ kubectl apply -R -f prometheus/alertmanager
 
 echo "-------------------- Deployment of Grafana -------------------- "
 
-kubectl create configmap grafana-dashboards-files --from-file=./grafana/dashboards --namespace=monitoring
-kubectl apply -R -f grafana/k8s
+kubectl create configmap grafana-dashboards-files --from-file=./_grafana/dashboards --namespace=monitoring
+kubectl apply -R -f _grafana/k8s
 
 echo "-------------------- Deployment of Spark -------------------- "
 
@@ -63,4 +64,4 @@ echo "-------------------- Deployment of Loki -------------------- "
 
 helm repo add grafana https://grafana.github.io/helm-charts
 
-helm install --values grafana/loki/values.yml loki --namespace monitoring grafana/loki
+helm install --values _grafana/loki/values.yml loki --namespace loki grafana/loki
