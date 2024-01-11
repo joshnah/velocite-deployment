@@ -18,7 +18,7 @@ spec:
           image: "danielqsj/kafka-exporter:latest"
           imagePullPolicy: Always
           args:
-            - --kafka.server=my-cluster-kafka-bootstrap:9092
+            - --kafka.server=kafka-service:9092
             # - --zookeeper.server=ZOOKEEPER_SERVER1:PORT
           ports:
             - name: kafka-exp-port

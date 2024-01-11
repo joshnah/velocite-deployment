@@ -11,5 +11,5 @@ spec:
     - containerPort: 8080
     env:
     - name: KAFKA_BROKERS
-      value: "my-cluster-kafka-bootstrap:9092"
+      value: "kafka-service:9092"
   dnsPolicy: ClusterFirst
