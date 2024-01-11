@@ -40,4 +40,4 @@ spec:
   
         - name: prometheus-storage-volume
           persistentVolumeClaim:
-            claimName: prom-storage-pvc 
+            claimName: prom-storage-pvc

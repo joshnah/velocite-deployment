@@ -3,11 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: prom-storage-pvc
   namespace: monitoring
-  labels:
-    vol: prom-storage
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
