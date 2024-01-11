@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   RESULT_TOPIC: api-result
-  SERVER_ADDRESS: kafka-service:9092
+  SERVER_ADDRESS: my-cluster-kafka-bootstrap:9092
   TODO_CITIES_TOPIC: to-do-cites
 kind: ConfigMap
 metadata:
