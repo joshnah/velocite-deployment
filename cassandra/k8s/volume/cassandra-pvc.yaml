@@ -4,10 +4,10 @@ metadata:
   name: cassandra-pvc
   namespace: database
 spec:
-  storageClassName: "cassandra-sc"
+  storageClassName: standard-two
   volumeName: cassandra-pv
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
