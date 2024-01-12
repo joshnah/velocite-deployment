@@ -18,15 +18,6 @@ spec:
       - name: cassandra-script-volume
         configMap:
           name: cassandra-script
-      initContainers:
-      - name: init-script
-        image: busybox
-        command: ['sh', '-c', 'cp /etc/cassandra_script/cassandra_schema.cql /data/']
-        volumeMounts:
-        - name: cassandra-script-volume
-          mountPath: /etc/cassandra_script
-        - name: cassandra-pvc
-          mountPath: /data
       containers:
       - name: cassandra-load-keyspace
         image: cassandra:5.0
@@ -38,7 +29,7 @@ spec:
           attempt=1
           max_attempts=5 
           while [[ $attempt -le $max_attempts ]]; do
-            if cqlsh $CASSANDRA_SERVICE_HOST $CASSANDRA_SERVICE_PORT -f /data/cassandra_schema.cql; then
+            if cqlsh $CASSANDRA_SERVICE_HOST $CASSANDRA_SERVICE_PORT -f /etc/cassandra_script/cassandra_schema.cql; then
               echo "Cassandra keyspace loaded successfully."
               exit 0
             else
@@ -56,5 +47,7 @@ spec:
         - name: CASSANDRA_SERVICE_PORT
           value: "9042"
         volumeMounts:
-        - mountPath: /data
+        - mountPath: /var/lib/cassandra
           name: cassandra-pvc
+        - mountPath: /etc/cassandra_script
+          name: cassandra-script-volume

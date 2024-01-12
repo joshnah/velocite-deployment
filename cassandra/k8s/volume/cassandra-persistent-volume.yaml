@@ -4,10 +4,15 @@ metadata:
   name: cassandra-pv
   namespace: database
 spec:
+  storageClassName: standard-two
   capacity:
-    storage: 500Mi
+    storage: 1Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   gcePersistentDisk:
     pdName: cassandra-disk
     fsType: ext4
+
+  claimRef:
+    namespace: database
+    name: cassandra-pvc
