@@ -2,12 +2,15 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: cassandra-pv
-  namespace: database
 spec:
+  storageClassName: "cassandra-sc"
   capacity:
-    storage: 500Mi
+    storage: 1Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
+  claimRef:
+    namespace: database
+    name: cassandra-pvc
   gcePersistentDisk:
     pdName: cassandra-disk
     fsType: ext4

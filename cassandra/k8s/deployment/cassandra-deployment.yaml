@@ -45,5 +45,12 @@ spec:
             - containerPort: 9042
               hostPort: 9042
               protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: cassandra-pvc
       restartPolicy: Always
+      volumes:
+        - name: cassandra-pvc
+          persistentVolumeClaim:
+            claimName: cassandra-pvc
 status: {}
