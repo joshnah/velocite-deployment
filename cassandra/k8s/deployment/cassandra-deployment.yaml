@@ -46,7 +46,7 @@ spec:
               hostPort: 9042
               protocol: TCP
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /var/lib/cassandra
               name: cassandra-pvc
       restartPolicy: Always
       volumes:
