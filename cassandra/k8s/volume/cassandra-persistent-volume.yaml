@@ -1,18 +1,51 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cassandra-pv
+  name: cassandra-data-1
   namespace: database
+  labels:
+    type: local
+    app: cassandra
 spec:
-  storageClassName: standard-two
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteMany
-  gcePersistentDisk:
-    pdName: cassandra-disk
-    fsType: ext4
-
-  claimRef:
-    namespace: database
-    name: cassandra-pvc
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data/cassandra-data-1
+  persistentVolumeReclaimPolicy: Recycle
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cassandra-data-2
+  namespace: database
+  labels:
+    type: local
+    app: cassandra
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data/cassandra-data-2
+  persistentVolumeReclaimPolicy: Recycle
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cassandra-data-3
+  namespace: database
+  labels:
+    type: local
+    app: cassandra
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data/cassandra-data-3
+  persistentVolumeReclaimPolicy: Recycle
