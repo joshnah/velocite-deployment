@@ -26,7 +26,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 15141,
   "graphTooltip": 0,
-  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -115,9 +114,11 @@
             "type": "loki",
             "uid": "P982945308D3682D1"
           },
-          "expr": "sum(count_over_time({namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\" [$__interval]))",
+          "editorMode": "code",
+          "expr": "sum(count_over_time({namespace=~\"$namespace\", container =~\"$container\", pod=~\"$pod\"} |= \"$query\" [$__interval]))",
           "instant": false,
           "legendFormat": "Log count",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -153,7 +154,9 @@
             "type": "loki",
             "uid": "P982945308D3682D1"
           },
-          "expr": "{namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\"",
+          "editorMode": "code",
+          "expr": "{namespace=~\"$namespace\", container =~\"$container\", pod=~\"$pod\"} |= \"$query\"",
+          "queryType": "range",
           "refId": "A"
         }
       ],
@@ -191,9 +194,13 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "messaging"
+          ],
+          "value": [
+            "messaging"
+          ]
         },
         "datasource": {
           "type": "loki",
@@ -215,21 +222,21 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [],
+          "value": []
         },
-        "datasource": {
-          "type": "loki",
-          "uid": "P982945308D3682D1"
-        },
-        "definition": "label_values(stream)",
+        "definition": "label_values({namespace=~\"$namespace\"},container)",
         "hide": 0,
         "includeAll": true,
         "multi": true,
-        "name": "stream",
+        "name": "container",
         "options": [],
-        "query": "label_values(stream)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values({namespace=~\"$namespace\"},container)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -239,21 +246,26 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
-        "datasource": {
-          "type": "loki",
-          "uid": "P982945308D3682D1"
-        },
-        "definition": "label_values(container)",
+        "definition": "label_values({namespace=~\"$namespace\", container=~\"$container\"},pod)",
         "hide": 0,
         "includeAll": true,
+        "label": "pod",
         "multi": true,
-        "name": "container",
+        "name": "pod",
         "options": [],
-        "query": "label_values(container)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values({namespace=~\"$namespace\", container=~\"$container\"},pod)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -270,6 +282,6 @@
   "timezone": "",
   "title": "Loki Kubernetes Logs",
   "uid": "o6-BGgnnk",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
