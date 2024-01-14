@@ -65,4 +65,4 @@ echo "-------------------- Deployment of Loki -------------------- "
 
 helm repo add grafana https://grafana.github.io/helm-charts
 
-helm upgrade --install loki loki/loki-stack --namespace loki --values _grafana/loki/values.yml
+helm upgrade --install loki grafana/loki --namespace loki --values _grafana/loki/values.yml --set loki.auth_enabled=false
