@@ -66,3 +66,7 @@ echo "-------------------- Deployment of Loki -------------------- "
 helm repo add grafana https://grafana.github.io/helm-charts
 
 helm upgrade --install loki grafana/loki --namespace loki --values _grafana/loki/values.yml --set loki.auth_enabled=false
+
+echo "-------------------- Deployment of Promtail -------------------- "
+
+kubectl apply -R -f prometheus/promtail
