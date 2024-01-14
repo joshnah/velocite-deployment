@@ -16,6 +16,15 @@ data:
                 "type": "prometheus",
                 "url": "http://prometheus-service.monitoring.svc:8080",
                 "version": 1
+            },
+            {
+               "access":"proxy",
+                "editable": true,
+                "name": "loki",
+                "orgId": 1,
+                "type": "loki",
+                "url": "http://loki-gateway.loki.svc.cluster.local",
+                "version": 1
             }
         ]
     }
