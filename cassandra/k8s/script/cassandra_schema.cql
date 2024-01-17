@@ -1,5 +1,5 @@
 CREATE KEYSPACE IF NOT EXISTS station WITH replication =
-  {'class': 'SimpleStrategy', 'replication_factor' : 1};
+  {'class': 'NetworkTopologyStrategy', 'replication_factor' : 1, 'DC1': '1'};
 
 CREATE TABLE IF NOT EXISTS station.stations (
   city text,

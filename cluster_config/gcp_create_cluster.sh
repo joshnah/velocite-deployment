@@ -2,6 +2,4 @@
 
 gcloud config set compute/zone europe-west6-a
 
-gcloud container clusters create sdtd-cluster --num-nodes=4 --quiet
-
-gcloud compute disks create cassandra-disk --size=20GB --type=pd-ssd --quiet
+gcloud container clusters create sdtd-cluster --num-nodes=4 --disk-size=50GB --quiet
