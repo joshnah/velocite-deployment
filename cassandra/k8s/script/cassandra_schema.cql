@@ -36,6 +36,15 @@ CREATE TABLE IF NOT EXISTS station.prediction (
   PRIMARY KEY ((city,station_id), forecast_at)
 ) WITH CLUSTERING ORDER BY (forecast_at DESC);
 
+CREATE TABLE IF NOT EXISTS station.realtime (
+  city text,
+  station_id text,
+  bikes smallint,
+  capacity smallint,
+  updated_at timestamp,
+  PRIMARY KEY ((city, station_id), updated_at)
+) WITH CLUSTERING ORDER BY (updated_at DESC);
+
 -- CREATE TYPE station.address (
 --   street text,
 --   city text,
