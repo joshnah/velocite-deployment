@@ -1086,6 +1086,14 @@ migrateDatabaseJob:
 
 # Airflow webserver settings
 webserver:
+  resources:
+    limits:
+      cpu: 1Gi
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+      
   # Add custom annotations to the webserver configmap
   configMapAnnotations: {}
   #  hostAliases for the webserver pod
