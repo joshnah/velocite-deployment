@@ -11,7 +11,6 @@ echo "-------------------- Creating ressources of namespaces -------------------
 kubectl create namespace monitoring
 kubectl create namespace messaging
 kubectl create namespace database
-kubectl create namespace web
 kubectl create namespace spark-operator
 
 echo "-------------------- Deployment of secret -------------------- "
