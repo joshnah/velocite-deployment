@@ -1,5 +1,10 @@
 # Projet SDTD - k8s
+Ce dépôt contient les fichiers nécessaires au déploiment du projet SDTD sur GKE.
+Le lien vers le dépôt applicatif: https://gitlab.com/viviane.qian/projet-sdtd
 
+Pour pouvoir communiquer avec le dépôt applicatif, il faut créer un token d'accès et modifier le fichier **secrets.yaml** avec le token.
+
+Pour que Airflow ait accès au dépôt applicatif, il est nécessaire de créer une clé de déploiement et de la placer dans le fichier airflow/values.yaml, sous la valeur airflow-ssh-secret
 
 ## Créer le cluster sur GCP
 
@@ -69,5 +74,4 @@ Pour supprimer Chaos Mesh du cluster, il faut exécuter le script suivant :
 
 ## A FAIRE
 - Remote log GCP pour airflow
-- schedule dag automatiquement lors du déploiement
 - Clean up sparkOperatorPods (Ils sont pas nettoyés après la fin de l'exécution)
