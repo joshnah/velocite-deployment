@@ -53,7 +53,11 @@ gcloud config set project [PROJECT_ID]
 ```
 
 ## Data pipeline
-Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder).
+Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder). Il est recommandé de démarrer les tâches dans l'ordre suivant :
+- fetch_station
+- streaming
+- daily_batch
+- fetch_weather
 
 
 ## Simulation de fautes - Chaos Mesh
@@ -71,7 +75,3 @@ Pour supprimer Chaos Mesh du cluster, il faut exécuter le script suivant :
 ```bash
 ./chaos_mesh/clear_chaos_mesh.sh
 ```
-
-## A FAIRE
-- Remote log GCP pour airflow
-- Clean up sparkOperatorPods (Ils sont pas nettoyés après la fin de l'exécution)
