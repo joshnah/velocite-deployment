@@ -53,11 +53,11 @@ gcloud config set project [PROJECT_ID]
 ```
 
 ## Data pipeline
-Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder). Il est recommandé de démarrer les tâches dans l'ordre suivant :
-- fetch_station
-- streaming
-- daily_batch
-- fetch_weather
+Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder). Il est recommandé de démarrer les DAGs dans l'ordre suivant :
+- fetch_station: Pour fetch les stations de vélos toutes les 2 minutes
+- streaming: Pour lancer le streaming de données
+- daily_batch: Pour lancer le batch quotidien
+- fetch_weather: Pour fetch les données météo et prédictions de vélos toutes les 12 heures
 
 
 ## Simulation de fautes - Chaos Mesh
