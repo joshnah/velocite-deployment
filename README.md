@@ -1,6 +1,8 @@
+# Ce dépôt est un bare clone de https://gitlab.com/phanti/projet-sdtd-k8s
+
 # Projet SDTD - k8s
 Ce dépôt contient les fichiers nécessaires au déploiment du projet SDTD sur GKE.
-Le lien vers le dépôt applicatif: https://gitlab.com/viviane.qian/projet-sdtd
+Le lien vers le dépôt applicatif: [https://gitlab.com/viviane.qian/projet-sdtd](https://github.com/joshnah/velocite-application)
 
 Pour pouvoir communiquer avec le dépôt applicatif, il faut créer un token d'accès et modifier le fichier **secrets.yaml** avec le token.
 
