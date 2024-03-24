@@ -1,40 +1,43 @@
-# Ce dépôt est un bare clone de https://gitlab.com/phanti/projet-sdtd-k8s
+# Project Velocity - ETL pipeline for self-service bike stations.
+Fetching data from over 2754 bike stations in France and weather data, this application can display real-time availability, analyze daily statistical analysis, and future availability projections of these stations.
 
-# Projet SDTD - k8s
-Ce dépôt contient les fichiers nécessaires au déploiment du projet SDTD sur GKE.
-Le lien vers le dépôt applicatif: [https://gitlab.com/viviane.qian/projet-sdtd](https://github.com/joshnah/velocite-application)
+## !! This is a bare clone from https://gitlab.com/phanti/projet-sdtd-k8s
+![image](https://github.com/joshnah/velocite-deployment/assets/57731922/098d1ad7-7a73-467c-9cb7-93e14b392015)
 
-Pour pouvoir communiquer avec le dépôt applicatif, il faut créer un token d'accès et modifier le fichier **secrets.yaml** avec le token.
+# Before starting:
+This repository contains the necessary files for deployment on Google Kubernetes Engine (GKE)
+Link to application repository: [https://gitlab.com/viviane.qian/projet-sdtd](https://github.com/joshnah/velocite-application)
 
-Pour que Airflow ait accès au dépôt applicatif, il est nécessaire de créer une clé de déploiement et de la placer dans le fichier airflow/values.yaml, sous la valeur airflow-ssh-secret
+To communicate with the application repository, we need to create an access token and add this token in **secrets.yaml**
+To give access application repository to Airflow, we need to create a deployment key and put it in **airflow/values.yaml** as value of airflow-ssh-secret
 
-## Créer le cluster sur GCP
+## Creating the Cluster on GCP
 
-### Sélectionner un projet Google Cloud
-Si ce n'est pas déjà fait, il faut sélectionner un projet Google Cloud de votre compte :
+### Selecting a Google Cloud Project
+If not already done, you need to select a Google Cloud project from your account:
 ```bash
 gcloud config set project [PROJECT_ID]
 ```
 
-### Activer les APIs Google (A faire une seule fois)
+### Activating Google APIs (One-time Setup)
 
 ```bash
     ./cluster_config/gcp_enable_api.sh
 ```
 
-### Création du cluster avec création d'un disque de 50go
+### Cluster Creation with a 50GB Disk
 
 ```bash
-    ./cluster_config/gcp_create_cluster.sh
+./cluster_config/gcp_create_cluster.sh
 ```
 
-### Suppression du cluster
+### Deleting the Cluster
 
 ```bash
     ./cluster_config/gcp_delete_cluster.sh
 ```
 
-## Déployer les ressources (va aussi supprimer les ressources existantes s'il y en a)
+## Deploying Resources (will also delete existing resources if any)
 
 - cassandra
 - kafka
@@ -48,32 +51,38 @@ gcloud config set project [PROJECT_ID]
     ./deploy.sh
 ```
 
-## Supprimer les ressources
+## Deleting Resources
 
 ```bash
     ./clear_ressources.sh
 ```
 
 ## Data pipeline
-Lors du déploiement des ressources, on va démarrer les tâches Airflow depuis l'UI airflow (Il faut un port-forward sur le pod airflow-webserver pour y accéder). Il est recommandé de démarrer les DAGs dans l'ordre suivant :
-- fetch_station: Pour fetch les stations de vélos toutes les 2 minutes
-- streaming: Pour lancer le streaming de données
-- daily_batch: Pour lancer le batch quotidien
-- fetch_weather: Pour fetch les données météo et prédictions de vélos toutes les 12 heures
 
+During resource deployment, we will start Airflow tasks from the Airflow UI (You need to port-forward to the airflow-webserver pod to access it). It is recommended to start the DAGs in the following order:
 
-## Simulation de fautes - Chaos Mesh
-Chaos Mesh permet de simuler sur des fautes sur le cluster. Pour l'utiliser, il faut le déployer sur le cluster.
+fetch_station: To fetch bike stations every 2 minutes
+streaming: To start data streaming
+daily_batch: To run the daily batch
+fetch_weather: To fetch weather data and bike predictions every 12 hours
+
+## Fault Injection Simulation - Chaos Mesh
+
+Chaos Mesh allows simulating faults on the cluster. To use it, you need to deploy it on the cluster.
+
 ```bash
 ./chaos_mesh/deploy_chaos_mesh.sh
 ```
 
-Pour accéder à l'interface web permettant d'injecter des fautes, il faut exposer le service.
+To access the web interface for injecting faults, you need to expose the service.
+
+
 ```bash
 kubectl expose deployment chaos-dashboard --type=LoadBalancer -n chaos-mesh --name=chaos-dashboard-loadbalancer
 ```
 
-Pour supprimer Chaos Mesh du cluster, il faut exécuter le script suivant :
+To remove Chaos Mesh from the cluster, execute the following script:
+
 ```bash
 ./chaos_mesh/clear_chaos_mesh.sh
 ```
